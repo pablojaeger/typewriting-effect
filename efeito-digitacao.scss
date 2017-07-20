@@ -1,0 +1,93 @@
+@import 'https://fonts.googleapis.com/css?family=VT323';
+@import "compass/css3";
+
+body{
+	background: #000;
+}
+.centralizador{
+	width: auto;
+	height: 55px;
+	padding: 0px 20px;
+	position:absolute;
+	top:50%;
+	left:0;
+	right: 0;
+	margin: -27px 0 0 0;
+}
+.efeito.digitacao{ 
+
+	&.container,
+	&.container *{
+		@include box-sizing(border-box);
+	}
+
+	&.container{
+		font-family: 'VT323', monospace;
+		width: 100%;
+		max-width: 500px;
+		height: 55px;
+		padding: 15px 15px;
+		line-height: 25px;
+		position:relative;
+		margin: 0 auto;
+		@include border-radius(4px);
+	}
+
+	.objeto{
+
+		margin: 0;
+		padding: 0 0 0 28.66px;
+		font-size: 23px;
+		color: #0C0;
+	/*	overflow: hidden; */
+	/*	text-overflow: ellipsis; */
+	/*	white-space:nowrap; */
+		text-shadow: rgba(0, 255, 0, 0.5) 0px 0px 2px, rgba(0, 255, 0, 0.65) 0px 0px 10px ;
+	
+			&::before{
+				content: "\003E\003A\00A0";
+				margin-left: -28.66px;
+			}
+
+			&::after{
+			content: "\00A0";
+			width: 5px;
+			height: 100%;
+			background: #0C0;
+			display: inline-block;
+			@include animation(pisca-cursor 0.75s infinite linear);
+			box-shadow: rgba(0, 255, 0, 0.5) 0px 0px 2px, rgba(0, 255, 0, 0.5) 0px 0px 10px ;
+		}
+	}
+}
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content; 
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  } 
+}
+
+@mixin animation ($stuff) {
+    -webkit-animation: $stuff;
+    -moz-animation: $stuff;
+    -ms-animation: $stuff;
+    animation: $stuff;
+}
+
+@include keyframes(pisca-cursor) {
+  0% {
+  	opacity:1;
+  }
+  100% {
+	opacity:0;
+  }
+}
